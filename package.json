@@ -38,5 +38,9 @@
     "gulp"
   ],
   "author": "Sylvain Gogel <sylvain.gogel@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
+  }
 }

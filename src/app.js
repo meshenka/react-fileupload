@@ -1,5 +1,15 @@
-import React from "react";
-import ReactDom from "react-dom";
-import Preview from "./Component/Preview";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Preview from './Component/Preview';
 
-ReactDOM.render(<Preview src="img/test.jpg" name="This is a test"/>,  document.getElementById('app'));
+const log = () => {
+  console.log('click');
+};
+
+ReactDOM.render(
+  <Preview
+    src='img/ninja.png'
+    name='This is a test'
+    onClick={log}/>,
+  document.getElementById('app')
+);

@@ -1,7 +1,7 @@
 import React from 'react';
 
-const FilePreview = ({src, name, onClick}) => {
-  (
+const Preview = ({src, name, onClick}) => {
+  return (
     <div>
       <img onClick={onClick}
         src={src}
@@ -11,4 +11,4 @@ const FilePreview = ({src, name, onClick}) => {
   );
 };
 
-export default FilePreview;
+export default Preview;
