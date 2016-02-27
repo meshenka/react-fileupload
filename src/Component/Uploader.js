@@ -63,7 +63,7 @@ var FileUpload = React.createClass({
 						/>
 					</div>
 				</div>
-				<Preview name="" src="" onClick={}/>
+				<Preview name="" src=""/>
 				<a href="#" onClick={this.remove}
 					className="remove-document" title="Supprimer le fichier">
 					<img src="/images/remove-doc.png" alt="Supprimer le fichier" />
@@ -71,59 +71,4 @@ var FileUpload = React.createClass({
 			</div>
 		);
 	}
-});
-
-/**
- * A Symfony Compatible Multi File Upload Component
- * It embed a collection of FileUploader
- */
-var FileUploadCollection = React.createClass({
-
-	// We define here the initial state of the component.
-	getInitialState: function() {
-		return {
-			files: []
-		};
-	},
-	removeFileUpload: function(index) {
-		var uploaders = this.state.files;
-		uploaders = jQuery.grep(uploaders, function(value) {
-			return value != index;
-		});
-
-		this.setState({ files: uploaders});
-	},
-	addFileUpload: function(){
-		var prevfiles = this.state.files;
-		var index = 1;
-		if(prevfiles.length > 0 ) {
-			var index = prevfiles[prevfiles.length-1] + 1;
-		}
-
-		prevfiles.push(index);
-		this.setState({files : prevfiles})
-	},
-	render: function() {
-		var container = this;
-
-		var fileUploads = this.state.files.map(function(index) {
-		return (
-	    	<li key={index}>
-	    		<FileUpload index={index} container={container}></FileUpload>
-	    	</li>
-	      );
-	    });
-
-		return (
-			<div>
-				<ul>
-					{fileUploads}
-					<li>
-						<a href="#" onClick={this.addFileUpload} className="add-document-link" title="Ajouter un Document"><img src="/images/add-doc.png" alt="Ajouter un Document" /></a>
-					</li>
-				</ul>
-			</div>
-		);
-	}
-
 });
