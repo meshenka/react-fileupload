@@ -1,74 +1,74 @@
 import React from 'react';
+import Preview from './Preview';
 
 /**
-* ReactJs test
+* A Uploader component that embed a Preview
 */
-/**
- * A FileUpload Form component that embed a FilePreview
- */
-var FileUpload = React.createClass({
-	// We define here the initial state of the component.
-	getInitialState: function() {
-		return {
-			file: false
+class Uploader extends React.Component {
+	constructor({ id, remove } ) {
+		super({ id, remove });
+		this.state = {
+			src: '/img/no-file.png',
+			alt: 'This is a test'
 		};
-		},
-		/**
-		 * things to do when file change.
-		 */
-	handleFile: function(e) {
-        var preview = this.refs.preview;
+		this.id = id;
+	}
+
+	/**
+	* things to do when file change.
+	*/
+	handleFile(e) {
 		var file = e.target.files[0];
 		var reader = new FileReader();
 
-			//we have a file and it is an image
+		//we have a file and it is an image
 		if (file.type.indexOf('image') === 0) {
-            reader.readAsDataURL(file);
+			reader.readAsDataURL(file);
 		} else {
-			preview.updatePreview({
-				src: '/images/binary-file.png',
-				name: file.name,
+			this.setState({
+				src: '/img/binary-file.png',
+				alt: file.name
 			});
 		}
 
-        reader.onloadend = function() {
-        	// console.log("file reader onloadend");
-        	preview.updatePreview({
-				src: reader.result,
-				name: file.name,
+		reader.onloadend = function() {
+			this.setState({
+				src:  reader.result,
+				alt: file.name
 			});
-        }.bind(this);
-	},
+		}.bind(this);
+	}
+	remove(e){
+
+	}
 	/**
-	 * Remove parent Uploader
+	 *
 	 */
-	remove: function (){
-		this.props.container.removeFileUpload(this.props.index);
-	},
-	/**
-	 */
-	render: function() {
-		var index = this.props.index;
+	render() {
+		const index = this.id;
 		return (
-			<div id={"question_documents_" + index  }>
-				<div id={"question_documents_" +  index + "_file"} className="hidden">
+			<div>
+				<div id={"documents_" +  index }>
 					<div className="form-group">
-						<label className="control-label" htmlFor={"question_documents_"+ index +"_file_file"}>Fichier</label>
+						<label className="control-label" htmlFor={"documents_"+ index +"_file"}>File</label>
 						<input
-							ref="fileInput"
 							type="file"
-							onChange={this.handleFile}
-							id={"question_documents_" +  index + "_file_file"}
-							name={"question[documents]["+ index +"][file][file]"}
-						/>
+							onChange={this.handleFile.bind(this)}
+							id={"_documents_" +  index + "_file"}
+							name={"documents["+ index +"][file]"}
+							/>
 					</div>
 				</div>
-				<Preview name="" src=""/>
-				<a href="#" onClick={this.remove}
-					className="remove-document" title="Supprimer le fichier">
-					<img src="/images/remove-doc.png" alt="Supprimer le fichier" />
+				<Preview
+					src={this.state.src}
+		    		name={this.state.alt} />
+				<a href="#" onClick={this.remove.bind(this)}
+					className="remove-document" title="Remove File">
+					<img src="/img/remove-doc.png" alt="Remove File" />
 				</a>
 			</div>
 		);
 	}
-});
+}
+
+export default Uploader;
