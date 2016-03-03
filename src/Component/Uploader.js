@@ -38,9 +38,25 @@ class Uploader extends React.Component {
 			});
 		}.bind(this);
 	}
+
+	/**
+	 *
+	 */
 	remove(e){
+		this.setState({
+			src: '/img/no-file.png',
+			alt: 'This is a test'
+		});
 
 	}
+
+	/**
+	 *
+	 */
+	upload(e){
+		console.log(e.target)
+	}
+
 	/**
 	 *
 	 */
@@ -49,7 +65,7 @@ class Uploader extends React.Component {
 		return (
 			<div>
 				<div id={"documents_" +  index }>
-					<div className="form-group">
+					<div className="form-group hidden">
 						<label className="control-label" htmlFor={"documents_"+ index +"_file"}>File</label>
 						<input
 							type="file"
@@ -61,7 +77,8 @@ class Uploader extends React.Component {
 				</div>
 				<Preview
 					src={this.state.src}
-		    		name={this.state.alt} />
+		    		name={this.state.alt}
+					onClick={this.upload.bind(this)} />
 				<a href="#" onClick={this.remove.bind(this)}
 					className="remove-document" title="Remove File">
 					<img src="/img/remove-doc.png" alt="Remove File" />
