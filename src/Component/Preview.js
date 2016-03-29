@@ -24,5 +24,5 @@ Preview.defaultProps={
     size: '90'
 
 }
-console.log(Preview);
+
 export default Preview;
