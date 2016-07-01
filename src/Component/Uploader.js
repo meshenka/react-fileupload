@@ -54,7 +54,7 @@ class Uploader extends React.Component {
 	 *
 	 */
 	upload(e){
-		console.log(e.target)
+		console.log(e.target);
 	}
 
 	/**

@@ -16,13 +16,13 @@ Preview.propType={
     src: React.PropTypes.string,
     name:React.PropTypes.string,
     size: React.PropTypes.string
-}
+};
 
 Preview.defaultProps={
     src: '/img/no-file.png',
     name: 'Preview',
     size: '90'
 
-}
+};
 
 export default Preview;
