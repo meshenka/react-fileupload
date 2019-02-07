@@ -1,28 +1,32 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const Preview = ({src, name, onClick, size}) => {
+const Preview = ({ src, name, onClick, size }) => {
   return (
     <div>
-      <img onClick={onClick}
+      <img
+        onClick={onClick}
         src={src}
-        height={size} width={size} className="preview-img-thumbnail"
-        alt={ name } />
+        height={size}
+        width={size}
+        className='preview-img-thumbnail'
+        alt={name}
+      />
     </div>
-  );
-};
+  )
+}
 
-Preview.propType={
-    onClick: React.PropTypes.func,
-    src: React.PropTypes.string,
-    name:React.PropTypes.string,
-    size: React.PropTypes.string
-};
+Preview.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  src: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired
+}
 
-Preview.defaultProps={
-    src: '/img/no-file.png',
-    name: 'Preview',
-    size: '90'
+Preview.defaultProps = {
+  src: '/img/no-file.png',
+  name: 'Preview',
+  size: '90'
+}
 
-};
-
-export default Preview;
+export default Preview
