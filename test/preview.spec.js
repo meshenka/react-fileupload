@@ -25,5 +25,4 @@ describe('Preview', () => {
   it('crash when a prop is missing', () => {
     expect(Preview).to.throw(TypeError)
   })
-
 })

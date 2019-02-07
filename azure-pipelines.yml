@@ -27,6 +27,9 @@ steps:
 - script: yarn lint
   displayName: 'lint code'
 
+- script: yarn test
+  displayName: 'Run unit tests'
+
 - script: yarn build
   displayName: 'Build project for standard node application'
 
