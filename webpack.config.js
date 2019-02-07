@@ -1,25 +1,26 @@
-var webpack = require('webpack');
-var PROD = JSON.parse(process.env.PROD_ENV || '0');
+var webpack = require('webpack')
+const path = require('path')
 
-module.exports  = {
-    entry: './src/app.js',
-    output: {
-        path: './build',
-        filename: 'bundle.js'
-    },
-    module: {
-      loaders: [
-        {
-          test: /\.jsx?$/,
-          exclude: /(node_modules|bower_components)/,
-          loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
-          query: {
-            presets: ['stage-2', 'es2015', 'react']
-          }
+var PROD = JSON.parse(process.env.PROD_ENV || '0')
+
+module.exports = {
+  mode: PROD ? "production": "development",
+  entry: './src/app.js',
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
+        query: {
+          presets: ['@babel/preset-env', '@babel/preset-react']
         }
-      ]
-    },
-    plugins: PROD ?[
-      new webpack.optimize.UglifyJsPlugin({minimize: true})
-    ]: []
-};
+      }
+    ]
+  },
+  plugins: PROD ? [new webpack.optimize.UglifyJsPlugin({ minimize: true })] : []
+}
