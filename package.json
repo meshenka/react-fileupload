@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "a demo glup with ES6 support",
   "license": "MIT",
-  "main": "gulpfile.babel.js",
+  "main": "src/app.js",
   "engine": {
     "yarn": "^1.3.0",
     "node": "^10.15.1"
