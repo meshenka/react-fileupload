@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Preview from './Preview'
+import PropTypes from 'prop-types'
 
 const Uploader = ({ id }) => {
   const [preview, setPreview] = useState({
@@ -73,6 +74,10 @@ const Uploader = ({ id }) => {
       </a>
     </div>
   )
+}
+
+Uploader.propTypes = {
+  id: PropTypes.string.isRequired
 }
 
 export default Uploader
